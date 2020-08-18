@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.contet-section-admin{
+    background: #5f788a;
+    padding: 10px;
+    border:1px solid #bdbcbc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.content-section{
+    background: rgb(230, 230, 230);
+    padding: 1em 2em;
+    border:1px solid #bdbcbc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    margin-top:6vh;
+}
+
+.headers{
+    color: rgb(108, 108, 255);
+}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts.items %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <p class="mr-2 article-small-headers">Teacher : {{ post.target }}</p>
+                            <p class="mr-2 article-small-headers">Student : {{ post.student }}</p>
+                            {% if post.title %}
+                                <p class="mr-2 article-small-headers">Refering post with title : {{ post.title }}</p>
+                            {% endif %}
+                            {% if current_user.is_teacher %}
+                                <p class="mr-2 article-small-headers">Student class : {{ post.Class }}</p>
+                            {% endif %}
+                            <small class="text-muted">{{ post.date_uploaded.strftime('%Y-%m-%d') }}</small>
+                        </div>
+                        {% if post.viewed_count > 1 %}
+                            <p class="artcle-content border-top border-bottom p-2 post-viewed">{{ post.content }}</p>
+                            <p class="post-viewed-indicator">Viewed</p>
+                        {% else %}
+                            <p class="artcle-content border-top border-bottom p-2">{{ post.content }}</p>
+                        {% endif %}
+                        {% if current_user.is_teacher == True %}
+                            <a href="{{ url_for('teacher_reply', post_id = post.id) }}" class="btn btn-info mr-4">Reply</a>
+                        {% endif %}
+                    </div>
+                </article>
+    {% endfor %}
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+    {% if page_num %}
+        {% if posts.page == page_num %}
+            <a class="btn btn-info" href="{{ url_for('teacher_questions_view', page = page_num) }}">{{ page_num }}</a>
+        {% else %}
+                <a class="btn btn-outline-info" href="{{ url_for('teacher_questions_view', page = page_num) }}">{{ page_num }}</a>
+        {% endif %}
+    {% else %}
+            ...
+    {% endif %}
+{% endfor %}
+{% endblock %}

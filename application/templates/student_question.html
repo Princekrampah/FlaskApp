@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form action="" method="POST">
+            {{ form.csrf_token()}}
+            <fieldset class="form-group">
+                <legend class="mb-3"> {{ legend }} </legend>
+                <div class="border-bottom pt-2">
+                    <small class="text-muted">{{ form_title }}</small>
+                </div>
+                <div class="form-group">
+                    {{ form.content.label(class="form-control-label") }}
+                    {% if form.content.errors %}
+                        {% for error in form.content.errors %}
+                            <div class="invalid-feedback">
+                                <span>{{ error }}</span>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {{ form.content(class="form-control form-control-lg") }}
+                </div>
+                <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-success") }}
+                </div>
+            </fieldset>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "admin/master.html" %}
+{% block head_css %}
+    {{ super() }}
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" type="text/css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_css.css') }}" type="text/css">
+{% endblock head_css %}
+
+{% block brand %}
+    <p>LOGO</p>
+{% endblock brand %}
+
+{% block access_control %}
+    <a class="btn btn-outline-info" href="{{ url_for('logout') }}">Logout</a>
+{% endblock access_control %}
+
+{% block body %}
+{{ super() }}
+    <div class="contet-section-admin">
+        <h1>Welcome to the admin section</h1>
+    </div>
+{% endblock body %}

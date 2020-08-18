@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts.items %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <p class="mr-2 article-small-headers">Teacher : {{ post.reply_author }}</p>
+                            <p class="mr-2 article-small-headers">Student : {{ post.target_student }}</p>
+                            <small class="text-muted">{{ post.date_uploaded.strftime('%Y-%m-%d') }}</small>
+                        </div>
+                        {% if post.viewed_count > 1 %}
+                            <p class="post-viewed-indicator">Viewed</p>
+                            <p class="artcle-content border-top border-bottom p-2 post-viewed">{{ post.content }}</p>
+                        {% else %}
+                            <p class="artcle-content border-top border-bottom p-2">{{ post.content }}</p>
+                        {% endif %}
+                    </div>
+                </article>
+    {% endfor %}
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+    {% if page_num %}
+        {% if posts.page == page_num %}
+            <a class="btn btn-info" href="{{ url_for('teachers_reply', page = page_num) }}">{{ page_num }}</a>
+        {% else %}
+                <a class="btn btn-outline-info" href="{{ url_for('teachers_reply', page = page_num) }}">{{ page_num }}</a>
+        {% endif %}
+    {% else %}
+            ...
+    {% endif %}
+{% endfor %}
+{% endblock %}

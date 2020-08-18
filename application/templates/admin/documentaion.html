@@ -1,0 +1,42 @@
+{% extends "admin/master.html" %}
+{% block head_css %}
+{{ super() }}
+<!-- <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" type="text/css"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='admin_css.css') }}" type="text/css">
+{% endblock head_css %}
+
+{% block brand %}
+<p>LOGO</p>
+{% endblock brand %}
+
+{% block body %}
+{{ super() }}
+<div class="content-section">
+    <h1>Welcome Admin Section Documentation</h1>
+
+    <h3 class="headers">To access administration page</h3>
+    <p>To access the admin page you must first be login in as an administrator.</p>
+
+    <h3 class="headers">Create a new user</h3>
+    <p>To create a new user simply click on the create option in the users section of the admin page and the fill in
+        the required information and assign the role to the user either as a teacher or as an administrator. Note that
+        by default the user has a role as a student. This default behaviour occurs only when the user registers using
+        the registration form in the main page. Creating a user following this method is not advised since the user
+        password will not get encrypted making the data not secure. Instead create a user through the normal
+        registration form and then assign the role to the specific user using the admin panel. Read on how to assign
+        roles to users.</p>
+
+    <h3 class="headers">Assign roles</h3>
+    <p>To assign a role to a user click on the users link in the admin panel then click the pen like icon, this will
+        take you to the page with that users specific information. You will see two check boxes there now select the
+        role you want to assign the user.</p>
+
+    <h3 class="headers">Assign Administration roles</h3>
+    <p>To give a user administrative role the current admin simply needs to turn on the is_admin field to true under
+        the users section.</p>
+
+    <h3 class="headers">To delete users with role as a teacher</h3>
+    <p>You can only delete a user who created a post after and only after you have deleted his or her posts since a
+        post can’t exist without an author.</p>
+</div>
+{% endblock body %}
